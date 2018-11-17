@@ -4,6 +4,8 @@
   "description": "This API is for the course 'application' from the thematic semester Internet of Things from the University of Applied Sciences Amsterdam",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build-server && cd dist && node server.js",
+    "build-server": "rm -rf dist && babel -d dist --minified src --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +19,10 @@
   },
   "homepage": "https://github.com/BBroerse/IoT-Application-API#readme",
   "dependencies": {
-    "hapi": "^17.7.0"
+    "babel-preset-env": "^1.7.0",
+    "dotenv": "^6.1.0",
+    "glob": "^7.1.3",
+    "hapi": "^17.7.0",
+    "hapi-node-postgres": "^4.1.0"
   }
 }
