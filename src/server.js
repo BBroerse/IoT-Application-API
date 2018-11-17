@@ -1,14 +1,20 @@
 'use strict';
 
+require('dotenv').config();
+
 import Hapi from 'hapi'
 
 import glob from 'glob';
 import path from 'path';
 
-const server = Hapi.server({
-  port: 3000,
-  host: 'localhost'
-});
+import config from './config.js'
+
+const server = new Hapi.Server();
+
+server.connection({
+  host: config.host,
+  port: config.port
+}); 
 
 // Require all plugins
 glob.sync('./plugins/*.js').forEach((plugin) => {
@@ -16,17 +22,11 @@ glob.sync('./plugins/*.js').forEach((plugin) => {
   require(path.resolve(plugin)).default(server);
 });
 
-// Require all routers
-glob.sync('./routers/*.js').forEach((router) => {
-  console.log(`loading router ${router}`);
-  require(path.resolve(router)).default(server);
-});
-
-// Require all resources
-glob.sync('./resources/*.js').forEach((resource) => {
-  console.log(`loading resource ${recourse}`);
-  require(path.resolve(resource)).default(server);
-});
+// // Require all routers
+// glob.sync('./routers/*.js').forEach((router) => {
+//   console.log(`loading router ${router}`);
+//   require(path.resolve(router)).default(server);
+// });
 
 const init = async () => {
   await server.start();
