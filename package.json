@@ -1,0 +1,22 @@
+{
+  "name": "iot-application-api",
+  "version": "1.0.0",
+  "description": "This API is for the course 'application' from the thematic semester Internet of Things from the University of Applied Sciences Amsterdam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BBroerse/IoT-Application-API.git"
+  },
+  "author": "Bas Broerse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BBroerse/IoT-Application-API/issues"
+  },
+  "homepage": "https://github.com/BBroerse/IoT-Application-API#readme",
+  "dependencies": {
+    "hapi": "^17.7.0"
+  }
+}
