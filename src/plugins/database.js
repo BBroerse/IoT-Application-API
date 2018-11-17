@@ -1,7 +1,7 @@
 
 import Knex from 'knex';
 import { Model } from 'objection';
-import config from '../config';
+import config from '../../config';
 
 export default () => {
   // Setup database

@@ -7,7 +7,7 @@ import Hapi from 'hapi'
 import glob from 'glob';
 import path from 'path';
 
-import config from './config.js'
+import config from '../config.js'
 
 const server = new Hapi.Server();
 
@@ -22,11 +22,11 @@ glob.sync('./plugins/*.js').forEach((plugin) => {
   require(path.resolve(plugin)).default(server);
 });
 
-// // Require all routers
-// glob.sync('./routers/*.js').forEach((router) => {
-//   console.log(`loading router ${router}`);
-//   require(path.resolve(router)).default(server);
-// });
+// Require all routers
+glob.sync('./routers/*.js').forEach((router) => {
+  console.log(`loading router ${router}`);
+  require(path.resolve(router)).default(server);
+});
 
 const init = async () => {
   await server.start();
