@@ -1,6 +1,4 @@
 const HapiSwagger = require('hapi-swagger');
-const Inert = require('inert');
-const Vision = require('vision');
 const Pack = require('../../package');
 
 const options = {
@@ -10,12 +8,7 @@ const options = {
   }
 };
 
-export default function (server) {
-  server.register([
-    Inert,
-    Vision,
-    {
-        'register': HapiSwagger,
-        'options': options
-    }], (err) => {});
+export default {
+  plugin: HapiSwagger,
+  options: options
 }

@@ -1,5 +1,3 @@
 import Blipp from 'blipp';
 
-export default function (server) {
-  server.register(Blipp);
-}
+export default { plugin: Blipp }

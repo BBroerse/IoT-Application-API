@@ -6,35 +6,34 @@ const path = '/measurements';
 
 const columns = ['id', 'created_at', 'humidity', 'temperature', 'co2_ppm'];
 
-async function getMeasurements (request, reply) {
+async function getMeasurements (request, h) {
   try {
     const measurements = await Measurement
       .query()
       .select(columns)
       .orderBy('created_at', 'desc')
 
-    reply(measurements)
+    return measurements;
   } catch (error) {
     console.error(error);
   }
 }
 
-async function getLatestMeasurement (request, reply) {
+async function getLatestMeasurement (request, h) {
   try {
-    const columns = ['id', 'created_at', 'humidity', 'temperature', 'co2_ppm'];
     const measurement = await Measurement
       .query()
       .select(columns)
       .orderBy('created_at', 'desc')
       .first();
 
-    reply(measurement)
+    return measurement;
   } catch (error) {
     console.error(error);
   }
 }
 
-async function postMeasurement (request, reply) {
+async function postMeasurement (request, h) {
   try {
     const measurement = await Measurement
       .query()
@@ -44,7 +43,7 @@ async function postMeasurement (request, reply) {
         temperature: request.payload.temperature
       });
 
-    reply(measurement)
+    return measurement;
   } catch (error) {
     console.error(error);
   }
@@ -55,7 +54,7 @@ export default function (server) {
     path: path ,
     method: 'GET',
     handler: getMeasurements,
-    config: {
+    options: {
       description: 'Get all measurements',
       notes: 'Returns all measurements',
       auth: false,
@@ -88,7 +87,7 @@ export default function (server) {
             humidity: Joi.number().precision(2).required(),
             co2_ppm: Joi.number().required()
         })
-    },
+      },
       auth: false,
       tags: ['api'],
       plugins: {

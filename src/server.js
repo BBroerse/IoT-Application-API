@@ -8,34 +8,32 @@ import glob from 'glob';
 import path from 'path';
 
 import config from '../config.js'
+import plugins from './plugins'
 
-const server = new Hapi.Server();
+import Knex from 'knex';
+import { Model } from 'objection';
 
-server.connection({
-  host: config.host,
-  port: config.port
-}); 
+exports.deployment = async () => {
 
-// Require all plugins
-glob.sync('./plugins/*.js').forEach((plugin) => {
-  console.log(`loading plugin ${plugin}`);
-  require(path.resolve(plugin)).default(server);
-});
+    // create server
+    const server = Hapi.server({
+      host: config.host,
+      port: config.port
+    });
 
-// Require all routers
-glob.sync('./routers/*.js').forEach((router) => {
-  console.log(`loading router ${router}`);
-  require(path.resolve(router)).default(server);
-});
+    Model.knex(Knex(config.database[config.env]));
 
-const init = async () => {
-  await server.start();
-  console.log(`Server running at: ${server.info.uri}`);
+    // Require all routers
+    glob.sync('./routers/*.js').forEach((router) => {
+      console.log(`loading router ${router}`);
+      require(path.resolve(router)).default(server);
+    });
+
+    // register plugins
+    await server.register(plugins);
+
+    // add routes
+    //server.route(routes);
+
+    return server;
 };
-
-process.on('unhandledRejection', (err) => {
-  console.log(err);
-  process.exit(1);
-});
-
-init();
