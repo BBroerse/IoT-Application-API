@@ -49,8 +49,9 @@ async function postMeasurement (request, h) {
   }
 }
 
-export default function (server) {
-  server.route({
+export default [
+
+  {
     path: path ,
     method: 'GET',
     handler: getMeasurements,
@@ -60,9 +61,9 @@ export default function (server) {
       auth: false,
       tags: ['api']
     }
-  });
+  },
 
-  server.route({
+  {
     path: path + '/latest',
     method: 'GET',
     handler: getLatestMeasurement,
@@ -72,9 +73,9 @@ export default function (server) {
       auth: false,
       tags: ['api']
     }
-  });
-
-  server.route({
+  },
+  
+  {
     path: path,
     method: 'POST',
     handler: postMeasurement,
@@ -96,5 +97,6 @@ export default function (server) {
         }
       }
     }
-  });
-};
+  }
+
+];
