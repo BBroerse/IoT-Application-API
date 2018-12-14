@@ -2,12 +2,11 @@
   "name": "iot-application-api",
   "version": "1.0.0",
   "description": "This API is for the course 'application' from the thematic semester Internet of Things from the University of Applied Sciences Amsterdam",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "npm run build-server && cd dist && node index.js",
+    "start": "npm run build-server && cd dist && node server.js",
     "build-server": "rm -rf dist && babel -d dist --minified src --copy-files",
-    "build-test": "babel -d dist/test --minified test --copy-files",
-    "test": "npm run build-test && mocha --require babel-register "
+    "test": "lab --assert code -T node_modules/lab-babel -v -I __core-js_shared__,core"
   },
   "repository": {
     "type": "git",
@@ -41,5 +40,11 @@
     "pg-native": "^3.0.0",
     "supertest": "^3.3.0",
     "vision": "^5.4.3"
+  },
+  "devDependencies": {
+    "code": "^5.2.4",
+    "lab": "^18.0.0",
+    "lab-babel": "^1.1.1",
+    "shot": "^4.0.7"
   }
 }

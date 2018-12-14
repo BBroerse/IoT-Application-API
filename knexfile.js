@@ -11,6 +11,20 @@ module.exports = {
       tableName: 'migrations'
     }
   },
+
+  test: {
+    client: 'pg',
+    connection: {
+      host: 'localhost',
+      user: 'hva',
+      password: 'hva',
+      database: 'iot_application'
+    },
+    migrations: {
+      tableName: 'migrations'
+    }
+  },
+  
   production: {
     client: 'pg',
     connection: {
