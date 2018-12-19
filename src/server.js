@@ -4,9 +4,6 @@ require('dotenv').config();
 
 import Hapi from 'hapi'
 
-import glob from 'glob'
-import path from 'path'
-
 import config from '../config.js'
 import plugins from './plugins'
 import routers from './routers'
