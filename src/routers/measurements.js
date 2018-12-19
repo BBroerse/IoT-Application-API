@@ -15,6 +15,7 @@ async function getMeasurements (request, h) {
 
     return measurements;
   } catch (error) {
+    console.log('getMeasurements - ', error)
     throw new Error(error)
   }
 }
@@ -29,6 +30,7 @@ async function getLatestMeasurement (request, h) {
 
     return measurement;
   } catch (error) {
+    console.log('getLatestMeasurement - ', error)
     throw new Error(error)
   }
 }
@@ -45,6 +47,7 @@ async function postMeasurement (request, h) {
 
     return measurement;
   } catch (error) {
+    console.log('postMeasurement - ', error)
     throw new Error(error)
   }
 }
