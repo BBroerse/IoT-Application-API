@@ -1,6 +1,8 @@
 'use strict';
 
-require('dotenv').config();
+require('dotenv').config({
+  path: __dirname + '/../.env'
+});
 
 import Hapi from 'hapi'
 
@@ -19,6 +21,7 @@ const server = Hapi.server({
 
 // // Init database connection
 Model.knex(Knex(config.database[config.env]));
+console.log(config.database[config.env]);
 
 const startServer = async () => {
   try {
