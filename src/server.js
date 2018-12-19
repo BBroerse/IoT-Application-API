@@ -21,7 +21,6 @@ const server = Hapi.server({
 
 // // Init database connection
 Model.knex(Knex(config.database[config.env]));
-console.log(config.database[config.env]);
 
 const startServer = async () => {
   try {
