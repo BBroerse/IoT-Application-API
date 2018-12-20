@@ -1,5 +1,5 @@
 'use strict';
-import _ from '../env.js';
+import '../env.js';
 
 import Hapi from 'hapi'
 
