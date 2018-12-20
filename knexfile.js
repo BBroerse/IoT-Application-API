@@ -14,7 +14,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}_test`,
+    connection: `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}_test`,
     migrations: {
       tableName: 'migrations'
     }
@@ -22,7 +22,7 @@ module.exports = {
   
   production: {
     client: 'pg',
-    connection: `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+    connection: `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
     migrations: {
       tableName: 'migrations'
     }
