@@ -12,14 +12,9 @@ module.exports = {
     }
   },
 
-  staging: {
+  test: {
     client: 'pg',
-    connection: {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-    },
+    connection: `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}_test`,
     migrations: {
       tableName: 'migrations'
     }
@@ -27,12 +22,7 @@ module.exports = {
   
   production: {
     client: 'pg',
-    connection: {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-    },
+    connection: `postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
     migrations: {
       tableName: 'migrations'
     }
