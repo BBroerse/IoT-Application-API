@@ -15,10 +15,10 @@ module.exports = {
   test: {
     client: 'pg',
     connection: {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME + '_test'
+      host: 'localhost',
+      user: 'wausa',
+      password: 'MousinDICaus',
+      database: 'iot_application_test'
     },
     migrations: {
       tableName: 'migrations'
