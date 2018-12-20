@@ -14,12 +14,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME + '_test'
-    },
+    connection: `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}_test`,
     migrations: {
       tableName: 'migrations'
     }
