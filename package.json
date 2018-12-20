@@ -6,8 +6,9 @@
   "scripts": {
     "start": "npm run build-server && cd dist && node server.js",
     "build-server": "rm -rf dist && babel -d dist --minified src --copy-files",
-    "test": "npm run rollback && npm run migrate-latest && npm run lab",
+    "test": "npm run rollback && npm run migrate-latest && npm run seed && npm run lab",
     "lab": "lab --assert code -T node_modules/lab-babel -v -I __core-js_shared__,core",
+    "seed": "./node_modules/.bin/knex seed:run",
     "migrate-latest": "./node_modules/.bin/knex migrate:latest",
     "rollback": "./node_modules/.bin/knex migrate:rollback"
   },
