@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
   const env = process.env.NODE_ENV;
 
   if(env === 'test') {
-    return knex.raw("COPY measurements(temperature, humidity, co2_ppm, created_at) FROM './seeds/measurement_seed.csv' DELIMITER ',' CSV HEADER;")
+    return knex.raw("COPY measurements(temperature, humidity, co2_ppm, created_at) FROM './measurement_seed.csv' DELIMITER ',' CSV HEADER;")
   } else {
     console.log('nothing to seed for environment', env)
   }
