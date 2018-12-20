@@ -1,8 +1,5 @@
 'use strict';
-
-require('dotenv').config({
-  path: __dirname + '/../.env'
-});
+import _ from '../env.js';
 
 import Hapi from 'hapi'
 
