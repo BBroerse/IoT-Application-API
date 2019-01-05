@@ -1,6 +1,9 @@
 import Models from '../models';
 import Joi from 'joi'
 
+import { has } from 'ramda'
+import moment from 'moment';
+
 const Measurement = Models.Measurement;
 const path = '/measurements';
 
@@ -8,15 +11,19 @@ const columns = ['id', 'created_at', 'humidity', 'temperature', 'co2_ppm'];
 
 async function getMeasurements (request, h) {
   try {
-    const measurements = await Measurement
-      .query()
+    let base = Measurement.query()
       .select(columns)
       .orderBy('created_at', 'desc')
+
+    if(has('begin_date', request.query) && has('end_date', request.query)) {
+      base.whereBetween('created_at', [beginDate, endDate])
+    }
+
+    const measurements = await base;
 
     return measurements;
   } catch (error) {
     console.log('getMeasurements - ', error)
-    throw new Error(error)
   }
 }
 
@@ -31,7 +38,6 @@ async function getLatestMeasurement (request, h) {
     return measurement;
   } catch (error) {
     console.log('getLatestMeasurement - ', error)
-    throw new Error(error)
   }
 }
 
@@ -48,7 +54,6 @@ async function postMeasurement (request, h) {
     return measurement;
   } catch (error) {
     console.log('postMeasurement - ', error)
-    throw new Error(error)
   }
 }
 
@@ -58,9 +63,15 @@ export default [
     path: path ,
     method: 'GET',
     handler: getMeasurements,
-    options: {
+    config: {
       description: 'Get all measurements',
       notes: 'Returns all measurements',
+      validate: {
+        query: {
+            begin_date: Joi.date(),
+            end_date: Joi.date()
+        }
+      },
       auth: false,
       tags: ['api']
     }
