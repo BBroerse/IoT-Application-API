@@ -13,7 +13,8 @@ import { Model } from 'objection'
 // create server
 const server = Hapi.server({
   host: config.host,
-  port: config.port
+  port: config.port,
+  routes: { cors: { origin: ['*'] }}
 });
 
 // // Init database connection

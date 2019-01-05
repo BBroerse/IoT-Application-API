@@ -17,5 +17,5 @@ steps:
 
 - script: |
     npm install
-    npm run build
-  displayName: 'npm install and build'
+    NODE_ENV=test DB_HOST=localhost DB_PORT=5432 DB_USERNAME=wausa DB_PASSWORD=MousinDICaus DB_NAME=iot_application SERVER_HOST=0.0.0.0 SERVER_PORT=3031 npm test
+  displayName: 'npm install and test'
