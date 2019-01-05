@@ -11,15 +11,14 @@ const columns = ['id', 'created_at', 'humidity', 'temperature', 'co2_ppm'];
 
 async function getMeasurements (request, h) {
   try {
-    let base = Measurement.query()
+    const measurements = Measurement.query()
       .select(columns)
       .orderBy('created_at', 'desc')
-
-    if(has('begin_date', request.query) && has('end_date', request.query)) {
-      base.whereBetween('created_at', [beginDate, endDate])
-    }
-
-    const measurements = await base;
+      .modify((queryBuilder) => {
+        if(has('begin_date', request.query) && has('end_date', request.query)) {
+          queryBuilder.whereBetween('created_at', [request.query.begin_date, request.query.end_date])
+        }
+    })   
 
     return measurements;
   } catch (error) {
