@@ -1,6 +1,5 @@
 # IoT-Application-API
-T
-his repository contains the api for the course application from thematic semester Internet of Things.   
+This repository contains the api for the course application from thematic semester Internet of Things.   
 It runs on the Node.js framework Hapi version 17.x.x
 
 ## Prerequisites
@@ -48,7 +47,3 @@ npm start
 ```
 npm run test
 ```
-
-### Customize vue/cli configuration
-
-[Configuration Reference](https://cli.vuejs.org/config/)
